@@ -13,19 +13,19 @@ import org.json.*;
 public class BungieAPI {
 
     //The header name that needs to be passed along with the API key in any requests.
-    private final String apiHeader = "X-API-KEY";
+    private final String API_HEADER = "X-API-KEY";
 
     //The API key for the application.
-    private final String apiKey = "e388b48e17034a0d8edcff768b858fb5";
+    private final String API_KEY = "e388b48e17034a0d8edcff768b858fb5";
 
     //The API's base URL.
-    private final String baseURL = "https://www.bungie.net/Platform/";
+    private final String BASE_URL = "https://www.bungie.net/Platform/";
 
     public String getMembershipId(String _displayName){
         String callAction = "Destiny2/SearchDestinyPlayer/";
         //-1 is the integer used by Bungie's API to search all platforms
         int membershipType = -1;
-        String urlString = this.baseURL + callAction  + membershipType + "/" + _displayName;
+        String urlString = this.BASE_URL + callAction  + membershipType + "/" + _displayName;
 
         StringBuilder content = connectAndReturnContents(urlString);
         //Print out the complete JSON string.
@@ -44,7 +44,7 @@ public class BungieAPI {
         String callAction = "Destiny2/SearchDestinyPlayer/";
         //-1 is the integer used by Bungie's API to search all platforms
         int membershipType = -1;
-        String urlString = this.baseURL + callAction  + membershipType + "/" + _displayName;
+        String urlString = this.BASE_URL + callAction  + membershipType + "/" + _displayName;
 
         StringBuilder content = connectAndReturnContents(urlString);
         //Print out the complete JSON string.
@@ -60,7 +60,7 @@ public class BungieAPI {
     }
 
     public String[] getCharacters(String _membershipId, int _membershipType){
-        String urlString = this.baseURL + "Destiny2/" + _membershipType + "/Profile/" + _membershipId + "/?components=100";
+        String urlString = this.BASE_URL + "Destiny2/" + _membershipType + "/Profile/" + _membershipId + "/?components=100";
         StringBuilder content = connectAndReturnContents(urlString);
         String[] characterArray = new String[3];
         try{
@@ -76,7 +76,7 @@ public class BungieAPI {
     }
 
     public int getCharacterLightLevel(String _characterId, String _membershipId, int _membershipType){
-        String urlString = this.baseURL + "Destiny2/" + _membershipType + "/Profile/" + _membershipId + "/Character/" + _characterId + "/?components=200";
+        String urlString = this.BASE_URL + "Destiny2/" + _membershipType + "/Profile/" + _membershipId + "/Character/" + _characterId + "/?components=200";
         StringBuilder content = connectAndReturnContents(urlString);
         try{
             JSONObject obj = new JSONObject(content.toString());
@@ -87,7 +87,7 @@ public class BungieAPI {
     }
 
     public String getRaceType(String _characterId, String _membershipId, int _membershipType){
-        String urlString = this.baseURL + "Destiny2/" + _membershipType + "/Profile/" + _membershipId + "/Character/" + _characterId + "/?components=200";
+        String urlString = this.BASE_URL + "Destiny2/" + _membershipType + "/Profile/" + _membershipId + "/Character/" + _characterId + "/?components=200";
         StringBuilder content = connectAndReturnContents(urlString);
         try{
             JSONObject obj = new JSONObject(content.toString());
@@ -110,7 +110,7 @@ public class BungieAPI {
     }
 
     public String getClassType(String _characterId, String _membershipId, int _membershipType){
-        String urlString = this.baseURL + "Destiny2/" + _membershipType + "/Profile/" + _membershipId + "/Character/" + _characterId + "/?components=200";
+        String urlString = this.BASE_URL + "Destiny2/" + _membershipType + "/Profile/" + _membershipId + "/Character/" + _characterId + "/?components=200";
         StringBuilder content = connectAndReturnContents(urlString);
         try{
             JSONObject obj = new JSONObject(content.toString());
@@ -133,7 +133,7 @@ public class BungieAPI {
     }
 
     public String getGenderType(String _characterId, String _membershipId, int _membershipType){
-        String urlString = this.baseURL + "Destiny2/" + _membershipType + "/Profile/" + _membershipId + "/Character/" + _characterId + "/?components=200";
+        String urlString = this.BASE_URL + "Destiny2/" + _membershipType + "/Profile/" + _membershipId + "/Character/" + _characterId + "/?components=200";
         StringBuilder content = connectAndReturnContents(urlString);
         try{
             JSONObject obj = new JSONObject(content.toString());
@@ -154,7 +154,7 @@ public class BungieAPI {
     }
 
     public String getLastPlayed(String _characterId, String _membershipId, int _membershipType){
-        String urlString = this.baseURL + "Destiny2/" + _membershipType + "/Profile/" + _membershipId + "/Character/" + _characterId + "/?components=200";
+        String urlString = this.BASE_URL + "Destiny2/" + _membershipType + "/Profile/" + _membershipId + "/Character/" + _characterId + "/?components=200";
         StringBuilder content = connectAndReturnContents(urlString);
         try{
             JSONObject obj = new JSONObject(content.toString());
@@ -170,7 +170,7 @@ public class BungieAPI {
             URL url = new URL(_urlString);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
-            con.setRequestProperty(this.apiHeader, this.apiKey);
+            con.setRequestProperty(this.API_HEADER, this.API_KEY);
 
             //Examine the response code.
             int status = con.getResponseCode();

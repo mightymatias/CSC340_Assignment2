@@ -11,7 +11,7 @@ import java.sql.SQLOutput;
 
 public class Main {
 
-    private static final BungieAPI testAPI= new BungieAPI();
+    private static final BungieAPI testAPI = new BungieAPI();
 
     public static void main(String[] args) {
         String displayName = "MightyMatias";
